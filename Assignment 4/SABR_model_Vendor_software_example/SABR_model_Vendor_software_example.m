@@ -20,14 +20,14 @@ oldMV    = xlsread('SABR vol surface from vendor.xls', 'Sheet1', 'C4:U9');
 
 % Input the Maturity (T), ATM Strike (F), ATM Vol
 T      = xlsread('SABR vol surface from vendor.xls', 'Sheet1', 'B4:B5');
-F      = xlsread('SABR vol surface from vendor.xls', 'Sheet1', 'L13');
-ATMvol = xlsread('SABR vol surface from vendor.xls', 'Sheet1', 'D13:D18');
+F      = xlsread('SABR vol surface from vendor.xls', 'Sheet1', 'B10');
+
 
 % Select the k-th maturity
 oldMV = oldMV(k,:);
 %VendorV = VendorV(k,:);
 T = T(k);
-ATMvol = ATMvol(k);
+
 
 % Select only non-blank entries
 Index = find(~isnan(oldMV));
@@ -71,6 +71,12 @@ end
 
 % Plot the results of both SABR curves against the curve from the vendor.
 % The vendor software clearly uses estimation method 2.
+
+'alpha parameter     ::',a
+'beta parameter      ::',b
+'rho parameter       ::',r
+'vol of vol parameter::',v
+
 
 plot(MK2, Vol2, 'r-',  oldMK, oldMV, 'kx')
 %legend('SABR vol method 1 (r and v only)', 'SABR vol method 2 (all parameters)', 'Vendor SABR vol', 'Market vol')
